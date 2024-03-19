@@ -37,11 +37,11 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::resource('customuser', CustomUserController::class);
-     Route::put('restore/{id}', [CustomUserController::class, 'restore'])->name('restore');
+     Route::put('restore/{id}', [SoftDeleteController::class, 'restore'])->name('restore');
     
      Route::get('deleted', [CustomUserController::class, 'softdeleteindex'])->name('deleted');
       
-    Route::delete('destroy/{id}', [CustomUserController::class, 'destroyPermanently'])->name('destroy-permanently');
+    Route::delete('destroy/{id}', [SoftDeleteController::class, 'destroyPermanently'])->name('destroy-permanently');
     
 
    
