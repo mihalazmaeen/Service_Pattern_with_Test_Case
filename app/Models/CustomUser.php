@@ -13,4 +13,8 @@ class CustomUser extends Model
     protected $fillable = [
         'name', 'email', 'password', 'photo'
     ];
+   public function addresses()
+{
+    return $this->hasMany(UserAddress::class, 'user_id'); // Specify the custom foreign key name
+}
 }

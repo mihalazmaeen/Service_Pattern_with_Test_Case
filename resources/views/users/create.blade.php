@@ -18,6 +18,22 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
+              <div class="form-group">
+                <label for="street">Street:</label>
+                <input type="text" class="form-control" id="street" name="address[street]">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="address[city]">
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" id="state" name="address[state]">
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" id="country" name="address[country]">
+            </div>
             <div class="form-group">
                 <label for="photo">Photo:</label>
                 <input type="file" class="form-control-file" id="photo" name="photo" onchange="previewImage(event)">

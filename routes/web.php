@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomUserController;
 use App\Http\Controllers\SoftDeleteController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
