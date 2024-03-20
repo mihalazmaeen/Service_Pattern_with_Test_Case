@@ -24,8 +24,16 @@ return new class extends Migration
         });
     }
 
-    public function down()
-    {
-        Schema::dropIfExists('user_addresses');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('user_addresses');
+    // }
+        public function down()
+        {
+            Schema::table('user_addresses', function (Blueprint $table) {
+                $table->dropForeign(['custom_user_id']);
+            });
+
+            Schema::dropIfExists('custom_users');
+        }
 };
