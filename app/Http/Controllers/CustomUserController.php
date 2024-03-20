@@ -104,8 +104,14 @@ class CustomUserController extends Controller
     // }
       public function update(Request $request, $id)
     {
+
         $user = $this->userService->find($id);
-        $this->userService->update($user, $request->all());
+        $this->userService->update($user,$request->all());
+
+        // Update the user's address
+        $user->addresses()->updateOrCreate([], $request->input('address'));
+        // $user = $this->userService->find($id);
+        // $this->userService->update($user, $request->all());
         return redirect()->route('customuser.index')->with('success', 'User updated successfully');
     }
     public function destroy(Request $request, $id)

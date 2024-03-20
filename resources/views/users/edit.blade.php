@@ -17,6 +17,22 @@
                 <input type="email" class="form-control" id="email" name="email" value="{{ $customuser->email }}">
             </div>
             <div class="form-group">
+                <label for="street">Street:</label>
+                <input type="text" class="form-control" id="street" name="address[street]" value="{{ $customuser->addresses->first()->street ?? '' }}">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="address[city]" value="{{ $customuser->addresses->first()->city ?? '' }}">
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" class="form-control" id="state" name="address[state]" value="{{ $customuser->addresses->first()->state ?? '' }}">
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" id="country" name="address[country]" value="{{ $customuser->addresses->first()->country ?? '' }}">
+            </div>
+            <div class="form-group">
                 <label for="photo">Photo:</label>
                 <input type="file" class="form-control-file" id="photo" name="photo" onchange="previewImage(event)">
                 <img id="preview" src="{{ asset('storage/' . $customuser->photo) }}" alt="{{ $customuser->name }}" width="100">

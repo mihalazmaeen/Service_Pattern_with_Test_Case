@@ -16,6 +16,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Address</th>
                     <th>Photo</th>
                     <th>Actions</th>
                 </tr>
@@ -25,6 +26,7 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->addresses->first()->street ?? '' }},{{ $user->addresses->first()->state ?? '' }},{{ $user->addresses->first()->city ?? '' }},{{ $user->addresses->first()->country ?? '' }}</td>
                         <td><img src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->name }}" width="100"></td>
                         <td>
                             <a href="{{ route('customuser.show', $user->id) }}" class="btn btn-primary">View</a>

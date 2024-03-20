@@ -10,6 +10,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Actions</th>
+                    <th>Address</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->addresses->first()->street ?? '' }},{{ $user->addresses->first()->state ?? '' }},{{ $user->addresses->first()->city ?? '' }},{{ $user->addresses->first()->country ?? '' }}</td>
                         <td>
                             <form action="{{ route('restore', $user->id) }}" method="POST" style="display: inline;">
                                 @csrf
