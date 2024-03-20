@@ -18,7 +18,9 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->addresses->first()->street ?? '' }},{{ $user->addresses->first()->state ?? '' }},{{ $user->addresses->first()->city ?? '' }},{{ $user->addresses->first()->country ?? '' }}</td>
+                        <td>   @foreach ($user->addresses as $address)
+                                {{ $address->street }}, {{ $address->state }}, {{ $address->city }}, {{ $address->country }}<br>
+                            @endforeach</td>
                         <td>
                             <form action="{{ route('restore', $user->id) }}" method="POST" style="display: inline;">
                                 @csrf

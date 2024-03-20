@@ -18,32 +18,54 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
-              <div class="form-group">
+              <div id="address-fields">
+            <div class="form-group">
                 <label for="street">Street:</label>
-                <input type="text" class="form-control" id="street" name="address[street]">
+                <input type="text" class="form-control" name="address[0][street]">
             </div>
             <div class="form-group">
                 <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="address[city]">
+                <input type="text" class="form-control" name="address[0][city]">
             </div>
             <div class="form-group">
                 <label for="state">State:</label>
-                <input type="text" class="form-control" id="state" name="address[state]">
+                <input type="text" class="form-control" name="address[0][state]">
             </div>
             <div class="form-group">
                 <label for="country">Country:</label>
-                <input type="text" class="form-control" id="country" name="address[country]">
+                <input type="text" class="form-control" name="address[0][country]">
             </div>
-            <div class="form-group">
-                <label for="photo">Photo:</label>
-                <input type="file" class="form-control-file" id="photo" name="photo" onchange="previewImage(event)">
-                <img id="preview" class="mt-2 mb-2" src="#" alt="Preview" style="display: none; width: 100px; height: 100px;">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <button type="button" class="btn btn-secondary" id="add-address">Add Address</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
     <script>
+    document.getElementById('add-address').addEventListener('click', function () {
+        const addressFields = document.getElementById('address-fields');
+        const newAddressField = document.createElement('div');
+        newAddressField.className = 'address-group';
+        newAddressField.innerHTML = `
+            <div class="form-group">
+                <label>Street:</label>
+                <input type="text" class="form-control" name="address[${addressFields.children.length}][street]">
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                <input type="text" class="form-control" name="address[${addressFields.children.length}][city]">
+            </div>
+            <div class="form-group">
+                <label>State:</label>
+                <input type="text" class="form-control" name="address[${addressFields.children.length}][state]">
+            </div>
+            <div class="form-group">
+                <label>Country:</label>
+                <input type="text" class="form-control" name="address[${addressFields.children.length}][country]">
+            </div>
+        `;
+        addressFields.appendChild(newAddressField);
+    });
         function previewImage(event) {
             var preview = document.getElementById('preview');
             preview.style.display = 'block';

@@ -2,10 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+   <div class="container">
         <h2>Edit User</h2>
-       <form action="{{ route('customuser.update', $customuser->id) }}" method="POST" enctype="multipart/form-data">
-
+        <form action="{{ route('customuser.update', $customuser->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -16,27 +15,25 @@
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ $customuser->email }}">
             </div>
-            <div class="form-group">
-                <label for="street">Street:</label>
-                <input type="text" class="form-control" id="street" name="address[street]" value="{{ $customuser->addresses->first()->street ?? '' }}">
-            </div>
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="address[city]" value="{{ $customuser->addresses->first()->city ?? '' }}">
-            </div>
-            <div class="form-group">
-                <label for="state">State:</label>
-                <input type="text" class="form-control" id="state" name="address[state]" value="{{ $customuser->addresses->first()->state ?? '' }}">
-            </div>
-            <div class="form-group">
-                <label for="country">Country:</label>
-                <input type="text" class="form-control" id="country" name="address[country]" value="{{ $customuser->addresses->first()->country ?? '' }}">
-            </div>
-            <div class="form-group">
-                <label for="photo">Photo:</label>
-                <input type="file" class="form-control-file" id="photo" name="photo" onchange="previewImage(event)">
-                <img id="preview" src="{{ asset('storage/' . $customuser->photo) }}" alt="{{ $customuser->name }}" width="100">
-            </div>
+            @foreach ($customuser->addresses as $index => $address)
+                <div class="form-group">
+                    <label for="street{{ $index }}">Street:</label>
+                    <input type="text" class="form-control" id="street{{ $index }}" name="addresses[{{ $index }}][street]" value="{{ $address->street }}">
+                    <input type="hidden" name="addresses[{{ $index }}][id]" value="{{ $address->id }}">
+                </div>
+                <div class="form-group">
+                    <label for="city{{ $index }}">City:</label>
+                    <input type="text" class="form-control" id="city{{ $index }}" name="addresses[{{ $index }}][city]" value="{{ $address->city }}">
+                </div>
+                <div class="form-group">
+                    <label for="state{{ $index }}">State:</label>
+                    <input type="text" class="form-control" id="state{{ $index }}" name="addresses[{{ $index }}][state]" value="{{ $address->state }}">
+                </div>
+                <div class="form-group">
+                    <label for="country{{ $index }}">Country:</label>
+                    <input type="text" class="form-control" id="country{{ $index }}" name="addresses[{{ $index }}][country]" value="{{ $address->country }}">
+                </div>
+                @endforeach
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
