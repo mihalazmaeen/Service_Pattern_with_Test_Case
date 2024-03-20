@@ -9,8 +9,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Actions</th>
                     <th>Address</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
